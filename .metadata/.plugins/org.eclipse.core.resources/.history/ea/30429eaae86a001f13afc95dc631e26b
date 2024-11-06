@@ -1,0 +1,239 @@
+#include <stdio.h>
+
+#define WITH_ENGINE_TEMP_CONTROLLER				1
+
+
+enum Engine
+{
+	OFF, ON
+};
+
+
+struct vehicleData
+{
+	int speed;
+	int ac_state;
+	float room_temperature;
+	float engine_temperature;
+	int engine_controller_state;
+	int engine_state;
+};
+
+void vehicleOptions(struct vehicleData* data);
+void vehicleOptionsController(char ch, struct vehicleData* data);
+void quitSystem(void);
+void turnOffEngine(void);
+void turnOnEngine(char c, struct vehicleData* data);
+void trafficLightData(struct vehicleData* data, char traffic_color);
+void roomTemperatureData(struct vehicleData* data);
+void vehicleSpeedThirtyKM(struct vehicleData* data);
+void displayCurrentVehicleState(struct vehicleData* data);
+void turnOnEngineOptions(void);
+#if (WITH_ENGINE_TEMP_CONTROLLER)
+void engineTemperatureData(struct vehicleData* data);
+#endif
+
+
+int main(void)
+{
+	setbuf(stdout, NULL);
+	struct vehicleData data = {0, OFF, 0, 0, OFF, OFF};
+	printf("Welcome To The Vehicle Control System.\n");
+	vehicleOptions(&data);
+	char ch;
+	scanf(" %c", &ch);
+	vehicleOptionsController(ch, &data);
+	return 0;
+}
+
+void vehicleOptions(struct vehicleData* data)
+{
+
+	printf("a. Turn on the vehicle engine\n");
+	printf("b. Turn off the vehicle engine\n");
+	printf("c. Quit the system\n");
+	char ch;
+	scanf(" %c", &ch);
+	vehicleOptionsController(ch, data);
+}
+void vehicleOptionsController(char ch, struct vehicleData* data)
+{
+
+	if((ch == 'a') || (ch == 'A'))
+		turnOnEngineOptions(data);
+	else if((ch == 'b') || (ch == 'B'))
+		turnOffEngine();
+	else if((ch == 'c') || (ch == 'C'))
+		quitSystem();
+	else
+	{
+		printf("You have Entered Invalid Character\n");
+		vehicleOptions(data);
+	}
+}
+
+void quitSystem(void)
+{
+	printf("Quit the system");
+}
+
+
+void turnOffEngine(struct vehicleData* data)
+{
+	printf("Turn off the vehicle engine\n");
+	vehicleOptions(data);
+}
+
+
+void turnOnEngineOptions(struct vehicleData* data)
+{
+	printf("a. Turn off the engine\n");
+	printf("b. Set the traffic light color.\n");
+	printf("c. Set the room temperature (Temperature Sensor)\n");
+#if (WITH_ENGINE_TEMP_CONTROLLER)
+	printf("d. Set the engine temperature (Engine Temperature Sensor)\n");
+#endif
+	char ch;
+	scanf(" %c", &ch);
+	turnOnEngine(ch, data);
+}
+
+
+void turnOnEngine(char ch, struct vehicleData* data)
+{
+	switch(ch)
+	{
+	case 'a':
+	case 'A':
+		turnOffEngine();
+		break;
+	case 'b':
+	case 'B':
+		char traffic_color;
+		printf("Enter the traffic color: ");
+		scanf(" %c",&traffic_color);
+		trafficLightData(data, traffic_color);
+		break;
+	case 'c':
+	case 'C':
+		printf("Enter the room temperature: ");
+		scanf(" %f", &data->room_temperature);
+		roomTemperatureData(data);
+		break;
+#if (WITH_ENGINE_TEMP_CONTROLLER)
+	case 'd':
+	case 'D':
+		printf("Enter the engine temperature: ");
+		scanf(" %f", &data->engine_temperature);
+		engineTemperatureData(data);
+		break;
+#endif
+	default:
+		printf("You have Entered Invalid Option\n\n");
+		turnOnEngineOptions();
+	}
+}
+
+
+void trafficLightData(struct vehicleData *data, char traffic_color)
+{
+	switch(traffic_color)
+	{
+	case 'G':
+	case 'g':
+		data->speed = 100;
+		displayCurrentVehicleState(data);
+		break;
+	case 'o':
+	case 'O':
+		data->speed = 30;
+		vehicleSpeedThirtyKM(data);
+		displayCurrentVehicleState(data);
+		break;
+	case 'r':
+	case 'R':
+		data->speed = 0;
+		displayCurrentVehicleState(data);
+		break;
+	default:
+		printf("You have Entered Invalid Character\n");
+		trafficLightData(data, traffic_color);
+		break;
+	}
+}
+
+
+void roomTemperatureData(struct vehicleData *data)
+{
+	if( data->room_temperature < 10)
+	{
+		data->ac_state  = ON;
+		data->room_temperature = 20.0;
+	}
+	else if( data->room_temperature > 30 )
+	{
+		data->ac_state  = ON;
+		data->room_temperature = 20.0;
+	}
+	else
+		data->ac_state = OFF;
+	displayCurrentVehicleState(data);
+}
+
+#if (WITH_ENGINE_TEMP_CONTROLLER)
+void engineTemperatureData(struct vehicleData* data)
+{
+	if( data->engine_temperature < 100)
+	{
+		data->engine_controller_state = ON;
+		data->engine_temperature = 125.0;
+	}
+	else if( data->engine_temperature > 150 )
+	{
+		data->engine_controller_state = ON;
+		data->engine_temperature = 125.0;
+	}
+	else
+		data->engine_controller_state = OFF;
+	displayCurrentVehicleState(data);
+}
+#endif
+
+void vehicleSpeedThirtyKM(struct vehicleData* data)
+{
+	if(data->ac_state == OFF)
+	{
+		data->ac_state = ON;
+		data->room_temperature = data->room_temperature * (5/4) + 1;
+	}
+#if (WITH_ENGINE_TEMP_CONTROLLER)
+
+	if(data->engine_controller_state == OFF)
+	{
+		data->engine_controller_state = ON;
+		data->engine_temperature = data->engine_temperature * (5/4) + 1;
+	}
+#endif
+}
+
+void displayCurrentVehicleState(struct vehicleData* data)
+{
+	printf("The Engine State: %d\n", data->engine_state);
+	if(data->ac_state == ON)
+		printf("AC: ON\n");
+	else
+		printf("AC: OFF\n");
+	printf("Vehicle Speed: %d\n", data->speed);
+	printf("Room Temperature: %f\n", data->room_temperature);
+
+#if (WITH_ENGINE_TEMP_CONTROLLER)
+	if(data->engine_controller_state == ON)
+		printf("Engine Temperature Controller State: ON\n");
+	else
+		printf("Engine Temperature Controller State: OFF\n");
+	printf("Engine Temperature: %f\n", data->engine_temperature);
+#endif
+	printf("\n");
+	turnOnEngineOptions();
+
+}

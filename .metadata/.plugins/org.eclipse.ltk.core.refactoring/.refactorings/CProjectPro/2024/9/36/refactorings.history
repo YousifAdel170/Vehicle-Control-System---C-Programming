@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;CProjectPro/filec&apos; to &apos;file.c&apos;" description="Rename resource &apos;filec&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="filec" name="file.c" stamp="1725473138513" updateReferences="true"/>
+</session>

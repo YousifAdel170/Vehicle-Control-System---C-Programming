@@ -1,0 +1,20 @@
+18:33:24 **** Incremental Build of configuration Debug for project cProject ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o cProject.o "..\\cProject.c" 
+..\cProject.c: In function 'turnOnEngineOptions':
+..\cProject.c:90:9: error: too many arguments to function 'turnOnEngine'
+   90 |         turnOnEngine(ch);
+      |         ^~~~~~~~~~~~
+..\cProject.c:27:6: note: declared here
+   27 | void turnOnEngine(void);
+      |      ^~~~~~~~~~~~
+..\cProject.c: At top level:
+..\cProject.c:93:6: error: conflicting types for 'turnOnEngine'; have 'void(char)'
+   93 | void turnOnEngine(char ch)
+      |      ^~~~~~~~~~~~
+..\cProject.c:27:6: note: previous declaration of 'turnOnEngine' with type 'void(void)'
+   27 | void turnOnEngine(void);
+      |      ^~~~~~~~~~~~
+
+18:33:24 Build Failed. 2 errors, 0 warnings. (took 591ms)
+

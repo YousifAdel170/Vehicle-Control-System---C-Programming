@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="vehicleOptionsAndChoice("/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="vehicleOptions("/>
+			<item value="quit"/>
+			<item value="turnOffEngine"/>
+			<item value="turnOnEngineOptions"/>
+			<item value="vehicleOptions"/>
+			<item value="vehicleOptionsController"/>
+			<item value="turnOnEngine"/>
+			<item value="roomTemperature"/>
+			<item value="displayCurrentVehicleState"/>
+			<item value="data"/>
+			<item value="scanf"/>
+			<item value="engineTemperatureData"/>
+			<item value="VehicleEngineSystem"/>
+			<item value="turnedOnEngineOptions"/>
+			<item value="traffic"/>
+		</list>
+		<list key="replacehistory">
+			<item value="vehicleOptionsAndChoice("/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1358"/>
+		<item key="DIALOG_Y_ORIGIN" value="370"/>
+		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

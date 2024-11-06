@@ -1,0 +1,9 @@
+LaunchTargetManager/configs/CProjectPro.exe=org.eclipse.launchbar.core.launchTargetType.local\:Local
+LaunchTargetManager/configs/cProject.exe=org.eclipse.launchbar.core.launchTargetType.local\:Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:cProject.exe,org.eclipse.launchbar.core.descriptorType.default\:CProjectPro.exe
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:cProject.exe/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:cProject.exe/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
